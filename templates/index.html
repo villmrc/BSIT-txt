@@ -1,0 +1,79 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Student List</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <header class="topbar">
+    <span class="grid-icon">▦</span>
+  </header>
+
+  <nav class="nav">Student List</nav>
+
+  <main>
+    <section class="table-card">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>IDNO</th>
+
+            <th class="desktop-only">LASTNAME</th>
+            <th class="desktop-only">FIRSTNAME</th>
+            <th class="mobile-only">FULL NAME</th>
+
+            <th class="desktop-only">COURSE</th>
+            <th class="desktop-only">LEVEL</th>
+            <th class="mobile-only">COURSE LEVEL</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for student in students %}
+          <tr>
+            <td>{{ student.id }}</td>
+            <td>{{ student.idno }}</td>
+
+            <td class="desktop-only">
+              {{ student.lastname }}
+            </td>
+
+            <td class="desktop-only">
+              {{ student.firstname }}
+            </td>
+
+            <td class="mobile-only">
+              {{ student.lastname|title }}, {{ student.firstname }}
+            </td>
+
+            <td class="desktop-only">
+              {{ student.course|upper }}
+            </td>
+
+            <td class="desktop-only">
+              {{ student.level }}
+            </td>
+
+            <td class="mobile-only">
+              {{ student.course|upper }}-{{ student.level }}
+            </td>
+          </tr>
+          {% else %}
+          <tr>
+            <td colspan="7" class="empty">No student records.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer>Copyright ©, villavermarc 2026</footer>
+
+</body>
+</html>
